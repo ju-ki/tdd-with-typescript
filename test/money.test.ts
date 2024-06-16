@@ -1,11 +1,12 @@
 import { Dollar } from '../src/dollar';
+import { Frac } from '../src/frac';
 
-test('equal test', () => {
+test('equal dollar test', () => {
   const five = new Dollar(5);
   let product = five.times(2);
-  expect(product.amount).toBe(10);
+  expect(new Dollar(10)).toEqual(product);
   product = five.times(3);
-  expect(product.amount).toBe(15);
+  expect(new Dollar(15)).toEqual(product);
 });
 
 test('test equality', () => {
@@ -14,4 +15,12 @@ test('test equality', () => {
 
 test('not test equality', () => {
   expect(new Dollar(5)).not.toEqual(new Dollar(6));
+});
+
+test('equal Frac test', () => {
+  const five = new Frac(5);
+  let product = five.times(2);
+  expect(new Frac(10)).toEqual(product);
+  product = five.times(3);
+  expect(new Frac(15)).toEqual(product);
 });

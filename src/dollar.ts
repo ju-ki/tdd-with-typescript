@@ -7,12 +7,8 @@ export class Dollar {
     return new Dollar(this._amount * multiplier);
   }
 
-  get amount(): number {
-    return this._amount;
-  }
-
   equals(object: Object): boolean {
     const dollar: Dollar = object as Dollar;
-    return this._amount === dollar.amount;
+    return this._amount === dollar._amount;
   }
 }
