@@ -1,14 +1,10 @@
-export class Frac {
-  private _amount: number;
+import { Money } from './money';
+
+export class Frac extends Money {
   constructor(amount: number) {
-    this._amount = amount;
+    super(amount);
   }
   times(multiplier: number): Frac {
-    return new Frac(this._amount * multiplier);
-  }
-
-  equals(object: Object): boolean {
-    const dollar: Frac = object as Frac;
-    return this._amount === dollar._amount;
+    return new Frac(this.amount * multiplier);
   }
 }
