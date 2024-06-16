@@ -4,7 +4,7 @@ export class Frac extends Money {
   constructor(amount: number) {
     super(amount);
   }
-  times(multiplier: number): Frac {
+  times(multiplier: number): Money {
     return new Frac(this.amount * multiplier);
   }
 }
