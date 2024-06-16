@@ -26,3 +26,7 @@ test('equal Frac test', () => {
   product = five.times(3);
   expect(new Frac(15).equals(product)).toBe(true);
 });
+
+test('equal frac and dollar test', () => {
+  expect(new Dollar(5).equals(new Frac(5))).toBe(false);
+});
