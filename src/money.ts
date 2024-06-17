@@ -1,6 +1,3 @@
-import { Dollar } from './dollar';
-import { Frac } from './frac';
-
 export abstract class Money {
   protected amount: number;
   constructor(amount: number) {
@@ -21,3 +18,6 @@ export abstract class Money {
   }
   abstract times(multiplier: number): Money;
 }
+
+import { Dollar } from './dollar';
+import { Frac } from './frac';
