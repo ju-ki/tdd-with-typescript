@@ -1,10 +1,10 @@
 import { Money } from './money';
 
 export class Frac extends Money {
-  constructor(amount: number) {
-    super(amount);
+  constructor(amount: number, currency: string) {
+    super(amount, currency);
   }
   times(multiplier: number): Money {
-    return new Frac(this.amount * multiplier);
+    return Money.frac(this.amount * multiplier);
   }
 }

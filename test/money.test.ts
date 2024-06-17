@@ -29,3 +29,8 @@ test('equal Frac test', () => {
 test('equal frac and dollar test', () => {
   expect(Money.dollar(5).equals(Money.frac(5))).toBe(false);
 });
+
+test('test currency', () => {
+  expect(Money.dollar(1).getCurrency()).toBe('USD');
+  expect(Money.frac(1).getCurrency()).toBe('CHF');
+});
