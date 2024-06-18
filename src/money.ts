@@ -22,7 +22,7 @@ export class Money {
   static frac(amount: number): Money {
     return new Money(amount, 'CHF');
   }
-  // abstract times(multiplier: number): Money;
+
   times(multiplier: number): Money {
     return new Money(this.amount * multiplier, this.currency);
   }
