@@ -1,4 +1,4 @@
-export abstract class Money {
+export class Money {
   protected amount: number;
   protected currency: string;
   constructor(amount: number, currency: string) {
@@ -8,21 +8,25 @@ export abstract class Money {
 
   equals(object: Object): boolean {
     const money: Money = object as Money;
-    return this.amount === money.amount && object instanceof this.constructor;
+    return this.amount === money.amount && this.equalsCurrency(money.currency);
+  }
+
+  equalsCurrency(currency: string): boolean {
+    return currency === this.currency;
   }
 
   static dollar(amount: number): Money {
-    return new Dollar(amount, 'USD');
+    return new Money(amount, 'USD');
   }
 
   static frac(amount: number): Money {
-    return new Frac(amount, 'CHF');
+    return new Money(amount, 'CHF');
   }
-  abstract times(multiplier: number): Money;
+  // abstract times(multiplier: number): Money;
+  times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, this.currency);
+  }
   getCurrency(): string {
     return this.currency;
   }
 }
-
-import { Dollar } from './dollar';
-import { Frac } from './frac';
