@@ -1,4 +1,6 @@
-export class Money {
+import { Expression } from './expression';
+
+export class Money implements Expression {
   protected amount: number;
   protected currency: string;
   constructor(amount: number, currency: string) {
@@ -21,6 +23,10 @@ export class Money {
 
   static frac(amount: number): Money {
     return new Money(amount, 'CHF');
+  }
+
+  plus(addend: Money): Expression {
+    return new Money(this.amount + addend.amount, this.currency);
   }
 
   times(multiplier: number): Money {

@@ -1,4 +1,5 @@
 import { Money } from '../src/money';
+import { Bank } from '../src/bank';
 
 test('equal dollar test', () => {
   const five = Money.dollar(5) as Money;
@@ -33,4 +34,15 @@ test('equal frac and dollar test', () => {
 test('test currency', () => {
   expect(Money.dollar(1).getCurrency()).toBe('USD');
   expect(Money.frac(1).getCurrency()).toBe('CHF');
+});
+
+test('simple addition test', () => {
+  const five = Money.dollar(5);
+  const sum = five.plus(five);
+
+  expect(Money.dollar(10).equals(sum)).toBe(true);
+
+  const bank = new Bank();
+  const reduced = bank.reduce(sum, 'USD');
+  expect(Money.dollar(10).equals(reduced)).toBe(true);
 });
