@@ -1,4 +1,5 @@
 import { Expression } from './expression';
+import { Sum } from './sum';
 
 export class Money implements Expression {
   protected amount: number;
@@ -6,6 +7,10 @@ export class Money implements Expression {
   constructor(amount: number, currency: string) {
     this.amount = amount;
     this.currency = currency;
+  }
+
+  getAmount(): number {
+    return this.amount;
   }
 
   equals(object: Object): boolean {
@@ -26,7 +31,7 @@ export class Money implements Expression {
   }
 
   plus(addend: Money): Expression {
-    return new Money(this.amount + addend.amount, this.currency);
+    return new Sum(this, addend);
   }
 
   times(multiplier: number): Money {

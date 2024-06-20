@@ -1,5 +1,6 @@
 import { Money } from '../src/money';
 import { Bank } from '../src/bank';
+import { Sum } from '../src/sum';
 
 test('equal dollar test', () => {
   const five = Money.dollar(5) as Money;
@@ -40,9 +41,22 @@ test('simple addition test', () => {
   const five = Money.dollar(5);
   const sum = five.plus(five);
 
-  expect(Money.dollar(10).equals(sum)).toBe(true);
-
   const bank = new Bank();
   const reduced = bank.reduce(sum, 'USD');
   expect(Money.dollar(10).equals(reduced)).toBe(true);
+});
+
+test('simple puls return sum test', () => {
+  const five = Money.dollar(5);
+  const result = five.plus(five);
+  const sum = result as Sum;
+  expect(five.equals(sum.augend)).toBe(true);
+  expect(five.equals(sum.addend)).toBe(true);
+});
+
+test('test reduce sum', () => {
+  const sum = new Sum(Money.dollar(3), Money.dollar(4));
+  const bank = new Bank();
+  const result = bank.reduce(sum, 'USD');
+  expect(Money.dollar(7).equals(result)).toBe(true);
 });

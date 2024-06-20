@@ -1,9 +1,10 @@
 import { Expression } from './expression';
 import { Money } from './money';
+import { Sum } from './sum';
 
 export class Bank {
   reduce(source: Expression, to: string): Money {
-    console.log(source, to);
-    return new Money(10, 'USD');
+    const sum = source as Sum;
+    return sum.reduce(to);
   }
 }
