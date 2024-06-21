@@ -37,6 +37,12 @@ export class Money implements Expression {
   times(multiplier: number): Money {
     return new Money(this.amount * multiplier, this.currency);
   }
+
+  public reduce(to: string) {
+    console.log(to);
+    return this;
+  }
+
   getCurrency(): string {
     return this.currency;
   }

@@ -9,7 +9,7 @@ export class Sum implements Expression {
     this.addend = addend;
   }
 
-  sum(to: string): Money {
+  reduce(to: string): Money {
     const amount: number = this.augend.getAmount() + this.addend.getAmount();
     return new Money(amount, to);
   }
