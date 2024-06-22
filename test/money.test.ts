@@ -1,6 +1,7 @@
 import { Money } from '../src/money';
 import { Bank } from '../src/bank';
 import { Sum } from '../src/sum';
+import { Expression } from '../src/expression';
 
 test('equal dollar test', () => {
   const five = Money.dollar(5) as Money;
@@ -68,7 +69,21 @@ test('test reduce different currencies', () => {
   expect(Money.dollar(1).equals(result)).toBe(true);
 });
 
+test('test identify currency', () => {
+  expect(1 === new Bank().rate('USD', 'USD')).toBe(true);
+});
+
 test('test array equals', () => {
   const array = [1, 2, 3];
   expect(array.every((num) => [1, 2, 3].includes(num))).toBe(true);
+});
+
+test('test mixed Addition', () => {
+  const fiveBucks = Money.dollar(5) as Expression;
+  const testFrancs = Money.frac(10) as Expression;
+  const bank = new Bank();
+  bank.addRate('CHF', 'USD', 2);
+  const result = bank.reduce(fiveBucks.plus(testFrancs), 'USD');
+  console.log(result);
+  expect(Money.dollar(10).equals(result)).toBe(true);
 });
