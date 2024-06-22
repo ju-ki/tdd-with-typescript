@@ -60,3 +60,15 @@ test('test reduce sum', () => {
   const result = bank.reduce(sum, 'USD');
   expect(Money.dollar(7).equals(result)).toBe(true);
 });
+
+test('test reduce different currencies', () => {
+  const bank = new Bank();
+  bank.addRate('CHF', 'USD', 2);
+  const result = bank.reduce(Money.frac(2), 'USD');
+  expect(Money.dollar(1).equals(result)).toBe(true);
+});
+
+test('test array equals', () => {
+  const array = [1, 2, 3];
+  expect(array.every((num) => [1, 2, 3].includes(num))).toBe(true);
+});

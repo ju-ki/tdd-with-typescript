@@ -1,3 +1,4 @@
+import { Bank } from './bank';
 import { Expression } from './expression';
 import { Sum } from './sum';
 
@@ -38,9 +39,9 @@ export class Money implements Expression {
     return new Money(this.amount * multiplier, this.currency);
   }
 
-  public reduce(to: string) {
-    console.log(to);
-    return this;
+  public reduce(bank: Bank, to: string) {
+    const rate: number = bank.rate(this.currency, to);
+    return new Money(this.amount / rate, to);
   }
 
   getCurrency(): string {
